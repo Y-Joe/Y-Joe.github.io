@@ -1,100 +1,46 @@
-<h1>Welcome,little...</h1>
-<h2>Oh,little...</h2>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-    <style>
-      .box {
-        width: 200px;
-        height: 200px;
-        background-color: rgba(34, 42, 114, 0.6);
-        margin-left: 200px;
-        opacity: 1;
-      }
-
-      .box1 {
-        width: 200px;
-        height: 200px;
-        background-color: rgba(26, 46, 228, 0.6);
-        margin-left: 400px;
-        opacity: 1;
-      }
-    </style>
+    <link rel="stylesheet" href="./css/swiper.min.css" />
+    <link rel="stylesheet" href="./css/commen.css" />
+    <script>
+      // 动态修改 html 的 font-size 屏幕的宽度/奢极高的尺寸/100
+      document.documentElement.style.fontSize =
+        document.documentElement.clientWidth / 7.5 + 'px';
+      // document.documentElement.style.fontSize =
+      //   document.documentElement.clientHeight / 7.5 + 'px';
+    </script>
+    <title>index</title>
   </head>
-
   <body>
-    <div class="box"></div>
-    <div class="box1"></div>
-    <button class="go">go</button><button class="back">back</button>
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img src="./img/index/1.jpg" alt="" />
+          <a href="./sign.html">跳过</a>
+        </div>
+        <div class="swiper-slide">
+          <img src="./img/index/2.jpg" alt="" /><a href="./sign.html">跳过</a>
+        </div>
+        <div class="swiper-slide">
+          <img src="./img/index/3.jpg" alt="" /><a href="./sign.html">跳过</a>
+        </div>
+        <div class="swiper-slide">
+          <img src="./img/index/4.jpg" alt="" />
+          <a href="./sign.html">来到一处</a>
+        </div>
+      </div>
+    </div>
+    <script src="./js/swiper.min.js"></script>
+    <script src="./js/zepto.min.js"></script>
 
-    <button class="btn">1</button>
-    <button class="btn">2</button>
-    <button class="btn">3</button>
-    <button class="btn">4</button>
-    <button class="btn">5</button>
+    <script>
+      var mySwiper = new Swiper('.swiper-container', {
+        autoplay: false //可选选项，自动滑动
+      });
+    </script>
   </body>
-  <script>
-    function myAnimate(element, styleName, styleValue, callback) {
-      var boxstyle = window.getComputedStyle(element, null)[styleName];
-      var i = parseFloat(boxstyle);
-      clearInterval(window.run);
-      window.run = setInterval(
-        function() {
-          if (i < styleValue) {
-            if (styleName === 'opacity') {
-              i += 0.1;
-              // console.log(i);
-              i = i.toFixed(1) * 1;
-              element.style[styleName] = i;
-            } else {
-              i++;
-              element.style[styleName] = i + 'px';
-            }
-          } else if (i > styleValue) {
-            if (styleName === 'opacity') {
-              i -= 0.1;
-              i = i.toFixed(1) * 1;
-              element.style[styleName] = i;
-            } else {
-              i--;
-              element.style[styleName] = i + 'px';
-            }
-          } else {
-            clearInterval(window.run);
-            if (callback) {
-              callback();
-            }
-          }
-        },
-        styleName === 'opacity' ? 100 : 10
-      );
-    }
-    var box = document.querySelector('.box');
-    document.querySelector('.go').onclick = function() {
-      myAnimate(box, 'opacity', 2, function() {
-        myAnimate(box, 'marginLeft', 300);
-      });
-      // myAnimate(box, 'opacity', 0);
-    };
-    var box1 = document.querySelector('.box1');
-    document.querySelector('.back').onclick = function() {
-      myAnimate(box1, 'marginLeft', 300, function() {
-        myAnimate(box1, 'opacity', 0);
-      });
-    };
-
-    var btns = document.querySelectorAll('.btn');
-    for (var n = 0; n < btns.length; n++) {
-      (function() {
-        var ind = n;
-        btns[n].onclick = function() {
-          console.log(ind);
-        };
-      })();
-    }
-  </script>
 </html>
